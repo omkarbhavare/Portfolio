@@ -1,4 +1,4 @@
-// File: C:\Users\PC\Downloads\Next-js-14-Personal-Portfolio-Website-Using-Framer-Motion-master\Next-js-14-Personal-Portfolio-Website-Using-Framer-Motion-master\src\app\page.tsx
+// File: C:\Users\PC\Desktop\Next-js-14-Personal-Portfolio-Website-Using-Framer-Motion-master\src\app\page.tsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

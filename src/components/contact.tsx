@@ -15,9 +15,7 @@ export default function Contact() {
   const [status, setStatus] = useState("");
 
   // EmailJS configuration
-  const SERVICE_ID = "service_9hcj9pf";
-  const TEMPLATE_ID = "template_9nx5odh";
-  const USER_ID = "akreZzG01YIIoqy5a";
+ 
 
   // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -31,14 +29,14 @@ export default function Contact() {
 
     // Send the email using EmailJS
     emailjs
-      .send(SERVICE_ID, TEMPLATE_ID, {
+      .send("service_9hcj9pf", "template_9nx5odh", {
         senderEmail: formData.senderEmail,  // Pass sender email
         message: formData.message,          // Pass the message
         
-      }, USER_ID)
+      }, "akreZzG01YIIoqy5a")
       .then(() => {
         setStatus("Email sent successfully!");
-        setIsSubmitting(false);
+        setIsSubmitting(false); 
         setFormData({ senderEmail: "", message: "" });  // Reset form
       })
       .catch((error) => {
