@@ -2,13 +2,9 @@
 
 import React, { useState } from "react";
 import SectionHeading from "./section-heading";
-import { skillsData } from "@/lib/data";
 import { useSectionInView } from "@/lib/useInView";
 import { motion, AnimatePresence } from "framer-motion";
-import { BiLogoJava } from "react-icons/bi";
 import { MdSignalWifiStatusbarConnectedNoInternet } from "react-icons/md";
-
-
 import {
   FaHtml5,
   FaCss3Alt,
@@ -38,33 +34,49 @@ const skillIcons = {
   Tailwind: <SiTailwindcss color="teal" size={40} />,
   Prisma: <SiPrisma color="purple" size={40} />,
   MongoDB: <SiMongodb color="green" size={40} />,
-  Docker: <SiDocker color="blue" size={40} />,
+  Docker: <SiDocker color="orange" size={40} />,
   AWS: <FaAws color="orange" size={40} />,
-  TypeScript: <SiTypescript color="yellow" size={40} />
-
+  TypeScript: <SiTypescript color="yellow" size={40} />,
 };
+
+type SkillType = keyof typeof skillIcons;
 
 const fadeInAnimationVariants = {
   initial: {
     opacity: 0,
     y: 100,
   },
-  animate: () => ({
+  animate: {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.05 * 2,
+      delay: 0.1, // Adjusted delay for smoother animation
     },
-  }),
+  },
 };
+
+const skillsData: SkillType[] = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Node.js",
+  "Git",
+  "Tailwind",
+  "Prisma",
+  "MongoDB",
+  "Docker",
+  "AWS"
+];
 
 export default function Skills() {
   const { ref } = useSectionInView("#skills");
+  
+  const [hoveredSkill, setHoveredSkill] = useState<SkillType | null>(null);
 
-  // State to track the hovered skill
-  const [hoveredSkill, setHoveredSkill] = useState(null);
-
-  const handleMouseEnter = (skill) => {
+  const handleMouseEnter = (skill: SkillType) => {
     setHoveredSkill(skill);
   };
 
@@ -79,27 +91,28 @@ export default function Skills() {
       className="mb-28 max-w-[53rem] scroll-mt-28 text-center sm:mb-40 relative"
     >
       <SectionHeading>{"My Skills"}
+
+      {/* Show hovered skill icon near the "My Skills" heading */}
       <AnimatePresence>
         {hoveredSkill && (
           <motion.div
-            className="absolute left-1/3 transform -translate-x-1/2 mt-[-2rem]"
+            className="absolute left-1/3 top-[0rem] transform -translate-x-3/2"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
-            {skillIcons[hoveredSkill] || <MdSignalWifiStatusbarConnectedNoInternet color="gray" size={40} />}
+            {skillIcons[hoveredSkill] || (
+              <MdSignalWifiStatusbarConnectedNoInternet color="gray" size={40} />
+            )}
           </motion.div>
         )}
       </AnimatePresence>
       </SectionHeading>
-
-      {/* Show hovered skill icon near the "My Skills" heading */}
-      
-
       <ul className="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
         {skillsData.map((skill, index) => (
           <motion.li
-            className="bg-white borderBlack rounded-xl px-5 py-3 dark:bg-white/10 dark:text-white/80"
+            className="bg-white border-black rounded-xl px-5 py-3 dark:bg-white/10 dark:text-white/80"
             key={index}
             variants={fadeInAnimationVariants}
             initial="initial"
@@ -108,6 +121,7 @@ export default function Skills() {
             custom={index}
             onMouseEnter={() => handleMouseEnter(skill)}
             onMouseLeave={handleMouseLeave}
+            aria-label={`Skill: ${skill}`} // Accessibility improvement
           >
             {skill}
           </motion.li>
