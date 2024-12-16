@@ -46,7 +46,7 @@ export const projectsData: ProjectInfo[] = [
       "I'm building a Swiggy clone, a feature-rich food delivery application that includes functionalities like user authentication, restaurant listing, order & payment.",
     tags: ["React", "Redux", "Swiggy API", "Tailwind", "NodeJS" , "JEST"],
     imageUrl: "/swiggy.png",
-    link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCy--OfGwMTiud7ENwpDxXgFwFo9IHtct5Kw&s",
+    link: "https://chef2door.vercel.app/",
   },
   {
     title: "Hirit Job Portal + Resume Builder",
